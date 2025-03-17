@@ -34,7 +34,7 @@ export default function ChatGPT() {
   
 
   const [chats, setChats] = useState([
-    [{ text: "Hello! How can I assist you today?", sender: "bot" }]
+    []
   ]);
   const [currentChatIndex, setCurrentChatIndex] = useState(0);
   const [input, setInput] = useState("");
@@ -129,55 +129,65 @@ export default function ChatGPT() {
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </div>
+          <div className="w-[900px] mx-auto h-[calc(100vh-480px)]">
+           {/* Messages */}
+                <div className="flex-1 overflow-y-auto p-12 flex flex-col h-full">
+                <div className="flex-1" />
+                {chats[currentChatIndex].length > 0 ? (
+                    chats[currentChatIndex].map((msg, index) => (
+                    <div 
+                        key={index}
+                        className={`max-w-xs px-4 py-2 rounded-lg shadow-md mb-4 ${
+                        msg.sender === "user"
+                            ? "bg-blue-500 self-end ml-auto"
+                            : darkMode
+                            ? "bg-gray-700 self-start"
+                            : "bg-white self-start"
+                        }`}
+                    >
+                        {msg.text}
+                    </div>
+                    ))
+                ) : (
+                    <h2 className="text-center py-5 text-gray-900 font-semibold text-2xl">
+                    What can I help with?
+                    </h2>
+                )}
+              
+                <div ref={messagesEndRef} />
+                <div className="flex justify-center items-center gap-2">
+									<div className="flex items-center rounded-full shadow-lg w-full border border-gray-300 p-3 bg-white">
+									{/* Plus button */}
+									<button className="p-3 bg-gray-200 text-gray-600 rounded-full hover:bg-gray-300 shadow-md">
+									<Plus size={16} />
+									</button>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-12 space-y-4">
-          {chats[currentChatIndex].map((msg, index) => (
-            <div
-              key={index}
-              className={`max-w-xs px-4 py-2 rounded-lg shadow-md ${
-                msg.sender === "user"
-                  ? "bg-blue-500 self-end ml-auto"
-                  : darkMode
-                  ? "bg-gray-700 self-start"
-                  : "bg-white self-start"
-              }`}
-            >
-              {msg.text}
-            </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
+									{/* Input field */}
+									<input
+									type="text"
+									value={input}
+									onChange={(e) => setInput(e.target.value)}
+									placeholder="Ask anything"
+									className={`flex-1 px-4 py-2 text-sm outline-none rounded-full ${
+										darkMode ? "bg-gray-700 text-white" : "bg-white text-black"
+									}`}
+									onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+									/>
 
-        {/* Input Box */}
-        <div className={`p-4 ${darkMode ? "bg-gray-800" : "bg-gray-300"} flex items-center shadow-lg`}>
-  <input
-    type="text"
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    placeholder="Type a message..."
-    className={`flex-1 p-3 rounded-full shadow-inner ${
-      darkMode ? "bg-gray-700 text-white" : "bg-white text-black"
-    } outline-none`}
-    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-  />
-  
-  {/* Microphone Button */}
-  <button
-    onClick={startListening}
-    className="ml-2 p-3 bg-gray-500 text-white rounded-full hover:bg-red-600 shadow-md"
-  >
-   <Mic size={20} />
-  </button>
+									{/* Mic button */}
+									<button
+									onClick={startListening}
+									className="p-3 bg-black text-white rounded-full hover:bg-gray-800 shadow-md"
+									>
+									<Mic size={16} />
+									</button>
+								</div>
+                    </div>
+               
+                </div>
 
-  <button
-    onClick={sendMessage}
-    className="ml-2 p-3 bg-black text-white rounded-full hover:bg-gray-900 shadow-md"
-  >
-    <Send size={20} />
-  </button>
-</div>
-
+          </div>
+       
       </div>
     </div>
   );
