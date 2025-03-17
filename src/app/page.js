@@ -97,7 +97,7 @@ export default function ChatGPT() {
             isOpen ? "w-64 translate-x-0" : "-translate-x-full left-0 fixed"
           }`}
         >
-          <h3 className="mb-4 font-semibold mt-12">Chats</h3>
+          <h3 className={`mb-4 font-semibold mt-12 ${darkMode ? "text-white" : "text-black"}`}>Chats</h3>
           {chats.map((chat, index) => (
             <button
               key={index}
