@@ -129,7 +129,7 @@ export default function ChatGPT() {
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
         </div>
-          <div className={`w-[900px] mx-auto ${chats[currentChatIndex].length === 0 ? "h-[calc(100vh-480px)]" : "h-[calc(100vh-80px)]"}`}>
+          <div className={`w-[900px] mx-auto ${chats[currentChatIndex].length === 0 ? "h-[calc(100vh-480px)]" : "h-[calc(100vh-180px)]"}`}>
            {/* Messages */}
                 <div className="flex-1 overflow-y-auto p-12 flex flex-col h-full">
                 <div className="flex-1" />
