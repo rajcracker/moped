@@ -156,7 +156,7 @@ export default function ChatGPT() {
               
                 <div ref={messagesEndRef} />
                 <div className="flex justify-center items-center gap-2">
-									<div className="flex items-center rounded-full shadow-lg w-full border border-gray-300 p-3 bg-white">
+									<div className={`flex items-center rounded-full shadow-lg w-full border  p-3 ${darkMode ? "border-gray-600 bg-gray-700" : " border-gray-300 bg-white"}`}>
 									{/* Plus button */}
 									<button className="p-3 bg-gray-200 text-gray-600 rounded-full hover:bg-gray-300 shadow-md">
 									<Plus size={16} />
