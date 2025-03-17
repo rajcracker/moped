@@ -149,7 +149,7 @@ export default function ChatGPT() {
                     </div>
                     ))
                 ) : (
-                    <h2 className="text-center py-5 text-gray-900 font-semibold text-2xl">
+                    <h2 className={`text-center py-5 text-gray-900 font-semibold text-2xl ${darkMode ? "text-white" : "text-black"}`}>
                     What can I help with?
                     </h2>
                 )}
